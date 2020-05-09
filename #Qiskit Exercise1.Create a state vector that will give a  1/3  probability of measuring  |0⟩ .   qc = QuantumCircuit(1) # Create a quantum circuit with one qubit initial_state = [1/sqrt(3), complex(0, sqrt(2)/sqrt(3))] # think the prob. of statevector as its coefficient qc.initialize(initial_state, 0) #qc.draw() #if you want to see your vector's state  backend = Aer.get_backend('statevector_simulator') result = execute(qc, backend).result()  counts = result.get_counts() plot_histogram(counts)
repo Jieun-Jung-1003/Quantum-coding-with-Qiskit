@@ -1,0 +1,12 @@
+#Qiskit Exercise1.Create a state vector that will give a  1/3  probability of measuring  |0⟩ .
+
+qc = QuantumCircuit(1) # Create a quantum circuit with one qubit
+initial_state = [1/sqrt(3), complex(0, sqrt(2)/sqrt(3))] # think the prob. of statevector as its coefficient
+qc.initialize(initial_state, 0)
+#qc.draw() #if you want to see your vector's state
+
+backend = Aer.get_backend('statevector_simulator')
+result = execute(qc, backend).result()
+
+counts = result.get_counts()
+plot_histogram(counts)
